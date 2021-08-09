@@ -1,0 +1,25 @@
+// babel 的配置
+{
+  // 写组件库配置插件的形式
+  // "plugins": [
+  //   [
+  //     "@babel/plugin-transform-runtime",
+  //     {
+  //       "absoluteRuntime": false,
+  //       "corejs": 2,
+  //       "helpers": true,
+  //       "regenerator": true,
+  //       "version": "7.0.0-beta.0"
+  //     }
+  //   ]
+  // ]
+  // 编写业务代码的形式
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}
