@@ -17,12 +17,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin') //清除打包文
 // 1.同步代码 只需要在wbepack.common.js 中 optimization 中配置
 // 2.异步代码(import),无需做配置，会自动进行代码分割
 
-
-
 module.exports = {
   entry: './src/index.js',    //入口文件 
   output: {                   //出口文件
-    filename: 'bundle.js',
+    // filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -50,6 +48,33 @@ module.exports = {
         }
       }
     ]
+  },
+  optimization: {
+    // 默认配置项
+    splitChunks: {
+      chunks: 'all',  // [async,initial,all]  all需要配置cacheGroups参数
+      minSize: 20000,   // 引入的文件大于20000字节 才做代码分割
+      maxSize: 50000,   // 会进行代码拆分 
+      minRemainingSize: 0,
+      minChunks: 1,     // 最少使用的次数
+      maxAsyncRequests: 30, // 同时加载的类库
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,  // 参数的权重
+          filename: 'vendors.js',
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20, // 参数的权重
+          filename: 'common.js',
+          reuseExistingChunk: true, // 如果一个模块已经被打包过了,就忽略这个模块，直接使用之前的模块
+        },
+      }
+    }
   },
   //  plugins
   plugins: [

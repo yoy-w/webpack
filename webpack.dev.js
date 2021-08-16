@@ -10,7 +10,6 @@ const devConfig = {
   mode: 'production',         //打包模式
   //  plugins
   plugins: [
-
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {

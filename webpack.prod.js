@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge')
-const commonConfig = require('webpack.common.js')
+const commonConfig = require('./webpack.common.js')
 // Tree Shaking 只支持 ES Module 
 
 const prodConfig = {
