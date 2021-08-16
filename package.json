@@ -1,7 +1,9 @@
 {
   "name": "webpack-demo",
-  "": "sideEffects 这个是对 tree shaking进行配置",
-  "sideEffects": false,
+  "": "sideEffects 这个是对 tree shaking进行配置 , css 被sideEffects 掉",
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
